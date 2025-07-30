@@ -1,0 +1,13 @@
+[package]
+name = "opensmtpd-filter-copycat"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.86.0"
+license = "GPL-3.0"
+authors = ["Alexander A. Klimov <a@kli.mov>"]
+
+[dependencies]
+itertools = "0.14.0"
+mail-parser = "0.10.2"
+regex-automata = "0.4.9"
+regex-syntax = "0.8.5"
