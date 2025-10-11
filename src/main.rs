@@ -172,7 +172,7 @@ fn main() -> std::io::Result<()> {
                                     "proceed"
                                 } else {
                                     writeln!(std_err, "Denying")?;
-                                    "reject|550 Forbidden"
+                                    "reject|550 Sender name contains recipient domain"
                                 }
                             )?;
                         }
