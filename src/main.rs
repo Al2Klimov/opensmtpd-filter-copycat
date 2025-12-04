@@ -19,6 +19,10 @@ fn main() -> std::io::Result<()> {
         line.clear();
         std_in.read_until(b'\n', &mut line)?;
 
+        if line.is_empty() {
+            return Ok(());
+        }
+
         while line
             .pop_if(|last| match last {
                 b'\r' => true,
