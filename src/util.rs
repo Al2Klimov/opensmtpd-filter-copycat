@@ -19,3 +19,41 @@ pub(crate) fn join_write_bytes<'a>(
 
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_join_write_bytes_empty() {
+        let mut out = Vec::new();
+        join_write_bytes(&mut out, b"|", std::iter::empty::<&[u8]>()).unwrap();
+        assert_eq!(out, b"");
+    }
+
+    #[test]
+    fn test_join_write_bytes_single() {
+        let mut out = Vec::new();
+        join_write_bytes(&mut out, b"|", [b"hello".as_ref()].into_iter()).unwrap();
+        assert_eq!(out, b"hello");
+    }
+
+    #[test]
+    fn test_join_write_bytes_multiple() {
+        let mut out = Vec::new();
+        join_write_bytes(
+            &mut out,
+            b"|",
+            [b"a".as_ref(), b"b".as_ref(), b"c".as_ref()].into_iter(),
+        )
+        .unwrap();
+        assert_eq!(out, b"a|b|c");
+    }
+
+    #[test]
+    fn test_join_write_bytes_multi_byte_sep() {
+        let mut out = Vec::new();
+        join_write_bytes(&mut out, b", ", [b"x".as_ref(), b"y".as_ref()].into_iter()).unwrap();
+        assert_eq!(out, b"x, y");
+    }
+}
