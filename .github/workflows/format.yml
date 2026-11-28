@@ -6,11 +6,13 @@ on:
       - master
     paths:
       - .github/workflows/format.yml
+      - Cargo.toml
       - src/**
       - tests/**
   pull_request:
     paths:
       - .github/workflows/format.yml
+      - Cargo.toml
       - src/**
       - tests/**
 
